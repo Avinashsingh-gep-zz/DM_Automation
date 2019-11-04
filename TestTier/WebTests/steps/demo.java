@@ -1,17 +1,17 @@
 package steps;
 
+import org.testng.Assert;
+
 import com.cucumber.listener.Reporter;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import dbDTO.ShouldCostDTO;
 import objectFactory.objectFactory;
-import org.testng.Assert;
 import utils.Keys;
 import utils.ScenarioContext;
 import utils.Utilities;
-
-import java.util.Random;
 
 public class demo extends objectFactory {
 
@@ -32,9 +32,7 @@ public class demo extends objectFactory {
 	@Given("^Valid test data avialable to fill Basic information$")
 	public void valid_test_data_avialable_to_fill_Basic_information() throws Throwable {
 
-		Random r = new Random();
-
-		ShouldCostDTO curr = scSql.getCurrency().stream().skip(r.nextInt(scSql.getCurrency().size() - 1)).findFirst()
+		ShouldCostDTO curr = scSql.getCurrency().stream().skip(random.nextInt(scSql.getCurrency().size() - 1)).findFirst()
 				.get();
 		ScenarioContext.setContext(Keys.Currency, curr.getCurrencyCode());
 
@@ -53,9 +51,7 @@ public class demo extends objectFactory {
 	@Then("^Verify Save As Draft button is visible$")
 	public void verify_Save_As_Draft_button_is_visible() throws Throwable {
 		Assert.assertEquals(Utilities.getText(scPage.saveAsDraftButton), "SAVE AS DRAFT", "Save as draft is displayed");
-		Assert.assertEquals(Utilities.getText(scPage.saveAsDraftButton), "SAVE AS ", "Save as draft is displayed");
-		
-	  // Assertion.isEqual(Utilities.getText(scPage.saveAsDraftButton), "SAVE AS DRAFT", "Save as draft is displayed");
+//		Assert.assertEquals(Utilities.getText(scPage.saveAsDraftButton), "SAVE AS ", "Save as draft is displayed");
 	}
 
 	@When("^Click on Save as draft$")

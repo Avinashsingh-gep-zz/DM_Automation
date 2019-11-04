@@ -3,8 +3,6 @@ package utils;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
 import java.util.Properties;
 
 public class DbPropertyReader {

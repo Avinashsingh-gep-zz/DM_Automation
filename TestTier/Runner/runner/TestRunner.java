@@ -1,17 +1,22 @@
 package runner;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
 import com.cucumber.listener.ExtentProperties;
+
 import cucumber.api.CucumberOptions;
 import cucumber.api.testng.CucumberFeatureWrapper;
 import cucumber.api.testng.TestNGCucumberRunner;
 import utils.DataTierUtils;
-
-import org.openqa.selenium.WebDriver;
-import org.testng.annotations.*;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @CucumberOptions(features = "classpath:features", plugin = { "json:target/cucumber-report-feature-composite.json",
 		"com.cucumber.listener.ExtentCucumberFormatter:" },tags = {"@web","@webtest2"}, glue = { "steps", "hooks" }, dryRun = false)
