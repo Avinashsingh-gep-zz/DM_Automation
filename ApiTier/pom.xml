@@ -8,6 +8,7 @@
 		<artifactId>DM-Automation-ShouldCost</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
+	<groupId>dm.ApiTier</groupId>
 	<artifactId>ApiTier</artifactId>
 	<name>ApiTier</name>
 	<properties>

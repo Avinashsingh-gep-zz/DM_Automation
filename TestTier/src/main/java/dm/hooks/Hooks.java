@@ -16,9 +16,10 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import com.cucumber.listener.Reporter;
 import com.google.common.io.Files;
 import com.paulhammant.ngwebdriver.NgWebDriver;
+import com.vimalselvam.cucumber.listener.ExtentProperties;
+import com.vimalselvam.cucumber.listener.Reporter;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
@@ -29,8 +30,6 @@ import dm.testtier.utils.JsonReader;
 import dm.testtier.utils.Keys;
 import dm.testtier.utils.PropertyReader;
 import dm.testtier.utils.ScenarioContext;
-
-
 
 public class Hooks {
 
@@ -44,7 +43,8 @@ public class Hooks {
 	@Before("@web")
 	public void webSetUp(Scenario scenario) throws IOException, ParseException, SQLException {
 
-		
+		ExtentProperties extentProperties = ExtentProperties.INSTANCE;
+		extentProperties.setReportPath("output/myreport.html");
 		if (TestRunner.browser.equals("Chrome")) {
 
 			HashMap<String, String> configInfo = JsonReader.readJsonFile(
@@ -75,7 +75,7 @@ public class Hooks {
 	public void afterScenario(Scenario scenario) {
 		DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
 		Date date = new Date();
-		
+
 		if (scenario.isFailed()) {
 			String screenshotName = scenario.getName().replaceAll(" ", "_").concat(dateFormat.format(date).toString());
 			try {

@@ -1,6 +1,5 @@
 package dm.runner;
 
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,24 +11,19 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.cucumber.listener.ExtentProperties;
+import com.vimalselvam.cucumber.listener.ExtentProperties;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.testng.CucumberFeatureWrapper;
 import cucumber.api.testng.TestNGCucumberRunner;
+import dm.datatier.utils.DataTierUtils;
 
-//@CucumberOptions(features = "src/test/java/WebTests/features/DemoWeb.feature", plugin = { "json:target/cucumber-report-feature-composite.json",
-//		"com.cucumber.listener.ExtentCucumberFormatter:" },tags = {"@web","@webtest2"}, glue = { "src/main/java/dm/webTests/steps" }, dryRun = false)
-/////*tags = {"~@Ignore"},*/
 
-@CucumberOptions(features = {"src/test/java/WebTests/features/DemoWeb.feature"},
-glue = {"dm.hooks", "dm.webTests.steps"},tags = {"@web"},
-plugin = { "json:target/cucumber-report-feature-composite.json",
-		"com.cucumber.listener.ExtentCucumberFormatter:" },
-dryRun = false, 
-monochrome = true
-////tags = "@macroFilter"
-)
+@CucumberOptions(features = "src/test/java/WebTests/features/DemoWeb.feature"
+, plugin = { "com.vimalselvam.cucumber.listener.ExtentCucumberFormatter:" }
+, tags = {"@web"}
+, glue = { "dm.hooks", "dm.webTests.steps"}, dryRun = false)
+/*tags = {"~@Ignore"},*/
 public class TestRunner {
 	private TestNGCucumberRunner testNGCucumberRunner;
 	public static String client;
@@ -51,24 +45,21 @@ public class TestRunner {
 		String reportName = "DM_ShouldCost_Report_" +dateFormat.format(date).toString();
 		ExtentProperties extentProperties = ExtentProperties.INSTANCE;
 		extentProperties.setReportPath(System.getProperty("user.dir") + "/target/cucumber-reports/Reports/" +reportName+ ".html");
-		
+		DataTierUtils.getDbConnection(TestRunner.client, TestRunner.environment);
 	}
 
 	@Test(groups = "cucumber", description = "Runs Cucumber Feature", dataProvider = "features")
-	public void feature(CucumberFeatureWrapper cucumberFeature) throws IOException {
-		
+	public void feature(CucumberFeatureWrapper cucumberFeature) throws Throwable {
 		testNGCucumberRunner.runCucumber(cucumberFeature.getCucumberFeature());
-		
 	}
 
 	@DataProvider
 	public Object[][] features() {
-		return testNGCucumberRunner.provideFeatures();
+		return testNGCucumberRunner.provideFeatures(); 
 	}
 
 	@AfterClass(alwaysRun = true)
 	public void tearDownClass() throws Exception {
-
 		testNGCucumberRunner.finish();
 	}
 }

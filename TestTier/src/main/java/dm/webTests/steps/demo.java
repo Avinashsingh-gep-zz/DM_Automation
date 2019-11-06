@@ -1,6 +1,11 @@
 package dm.webTests.steps;
 
-import com.cucumber.listener.Reporter;
+import java.util.Random;
+
+import org.testng.Assert;
+
+import com.vimalselvam.cucumber.listener.Reporter;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -9,10 +14,6 @@ import dm.testtier.utils.Keys;
 import dm.testtier.utils.ScenarioContext;
 import dm.utils.Utilities;
 import dm.webTests.objectFactory.ObjectFactory;
-
-import java.util.Random;
-
-import org.testng.Assert;
 
 public class demo extends ObjectFactory {
 
@@ -53,7 +54,8 @@ public class demo extends ObjectFactory {
 	
 	@Then("^Verify Save As Draft button is visible$")
 	public void verify_Save_As_Draft_button_is_visible() throws Throwable {
-		Assert.assertEquals(Utilities.getText(scPage.saveAsDraftButton), "SAVE AS DRAFT", "Save as draft is displayed");
+//		Assert.assertEquals(Utilities.getText(scPage.saveAsDraftButton), "SAVE AS DRAFT", "Save as draft is displayed");
+		Assert.assertEquals(Utilities.getText(scPage.saveAsDraftButton), "SAVE AS", "Save as draft is displayed");
 	}
 
 	@When("^Click on Save as draft$")

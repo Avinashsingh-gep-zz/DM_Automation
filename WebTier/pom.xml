@@ -8,6 +8,7 @@
 		<artifactId>DM-Automation-ShouldCost</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
+	<groupId>dm.WebTier</groupId>
 	<artifactId>WebTier</artifactId>
 	<name>WebTier</name>
 	<properties>
