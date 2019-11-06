@@ -11,12 +11,12 @@ public class Login extends LoginLocators {
 	
 	public static WebDriver driver;
 
-	public static synchronized Login getInstance(Object driver) {
+	public synchronized static Login getInstance(Object driver) {
 		Login.driver = (WebDriver)driver;
-		if (instance == null) {
+//		if (instance == null) {
 			
 			instance = new Login((WebDriver)driver);
-		}
+//		}
 		return instance;
 	}
 

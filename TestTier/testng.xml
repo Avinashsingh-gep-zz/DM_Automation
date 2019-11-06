@@ -8,7 +8,7 @@
 		<parameter name="Client" value="Petronos" />
 		<parameter name="Environment" value="UAT" />
 		<packages>
-			<package name = "runner"/>
+			<package name = "dm.runner"/>
 		</packages>
 	</test>
 </suite>

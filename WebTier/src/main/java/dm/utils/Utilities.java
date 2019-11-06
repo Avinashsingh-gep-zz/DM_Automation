@@ -51,6 +51,13 @@ public class Utilities {
 		executor.executeScript("arguments[0].click();", locator);
 
 	}
+	
+	public void scrollWaitAndClick(final WebElement locator) {
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		explicitWait(locator);
+		executor.executeScript("arguments[0].click();", locator);
+
+	}
 
 	public void waitAndType(final WebElement locator, String keys) {
 		fluentWait(locator).sendKeys(keys);

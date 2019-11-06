@@ -1,4 +1,4 @@
-package dm.mobileTier;
+package dm.MobileTier;
 
 /**
  * Hello world!

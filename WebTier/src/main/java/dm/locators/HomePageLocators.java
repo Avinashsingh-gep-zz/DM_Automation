@@ -17,7 +17,7 @@ public class HomePageLocators extends Utilities{
 	}
 	
 	@FindBy(xpath = "//a[@data-tooltip='Create New Document']")
-	protected WebElement createNewDoc;
+	protected static WebElement createNewDoc;
 	
 	@FindBy(xpath = "//a[@data-tooltip='Create New Document']")
 	protected WebElement createHoverRing;
