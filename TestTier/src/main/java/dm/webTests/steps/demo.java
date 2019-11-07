@@ -54,8 +54,8 @@ public class demo extends ObjectFactory {
 	
 	@Then("^Verify Save As Draft button is visible$")
 	public void verify_Save_As_Draft_button_is_visible() throws Throwable {
-//		Assert.assertEquals(Utilities.getText(scPage.saveAsDraftButton), "SAVE AS DRAFT", "Save as draft is displayed");
-		Assert.assertEquals(Utilities.getText(scPage.saveAsDraftButton), "SAVE AS", "Save as draft is displayed");
+		Assert.assertEquals(Utilities.getText(scPage.saveAsDraftButton), "SAVE AS DRAFT", "Save as draft is displayed");
+//		Assert.assertEquals(Utilities.getText(scPage.saveAsDraftButton), "SAVE AS", "Save as draft is displayed");
 	}
 
 	@When("^Click on Save as draft$")

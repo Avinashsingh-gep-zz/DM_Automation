@@ -32,14 +32,10 @@ public class PropertyReader {
 	}
 
 	public static String getReportConfigPath() {
-		
-		 String ConfigurereportConfigPath =
-		 PropertyReader.readConfig(ConfigurationProperties.ReportConfigPath);
-		 String reportConfigPath = System.getProperty("user.dir") +
-		 ConfigurereportConfigPath;
-		 return reportConfigPath;
-		
-
+		String ConfigurereportConfigPath =
+				PropertyReader.readConfig(ConfigurationProperties.ReportConfigPath);
+		String reportConfigPath = System.getProperty("user.dir") +
+				ConfigurereportConfigPath;
+		return reportConfigPath;
 	}
-
 }

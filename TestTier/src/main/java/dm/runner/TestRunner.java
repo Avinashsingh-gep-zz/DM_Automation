@@ -1,12 +1,16 @@
 package dm.runner;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -17,12 +21,17 @@ import cucumber.api.CucumberOptions;
 import cucumber.api.testng.CucumberFeatureWrapper;
 import cucumber.api.testng.TestNGCucumberRunner;
 import dm.datatier.utils.DataTierUtils;
+import dm.testtier.utils.BrowserFactory;
+import dm.testtier.utils.ConfigurationProperties;
+import dm.testtier.utils.JsonReader;
+import dm.testtier.utils.Keys;
+import dm.testtier.utils.PropertyReader;
+import dm.testtier.utils.ScenarioContext;
 
-
-@CucumberOptions(features = "src/test/java/WebTests/features/DemoWeb.feature"
-, plugin = { "com.vimalselvam.cucumber.listener.ExtentCucumberFormatter:", "html:target/newReport" }
+@CucumberOptions(features = "src/test/java"
+, plugin = { "com.vimalselvam.cucumber.listener.ExtentCucumberFormatter:" }
 , tags = {"@web"}
-, glue = { "dm.hooks", "dm.webTests.steps"}, dryRun = false)
+, glue = { "dm.hooks", "dm.webTests.steps", "dm.apiTests.steps"}, dryRun = false)
 /*tags = {"~@Ignore"},*/
 public class TestRunner {
 	private TestNGCucumberRunner testNGCucumberRunner;
@@ -31,6 +40,19 @@ public class TestRunner {
 	public static String environment;
 	static WebDriver driver;
 
+	@BeforeSuite
+	@Parameters({ "Browser", "Client", "Environment" })
+	public void beforeSuite(String browser, String client, String environment) throws IOException {
+		HashMap<String, String> configInfo = JsonReader.readJsonFile(
+				System.getProperty("user.dir") + PropertyReader.readConfig(ConfigurationProperties.JSON_PATH),
+				environment, client);
+		ScenarioContext.setContext(Keys.URL, configInfo.get(Keys.URL.toString()));
+		ScenarioContext.setContext(Keys.UserName, configInfo.get(Keys.UserName.toString()));
+		ScenarioContext.setContext(Keys.PassWord, configInfo.get(Keys.PassWord.toString()));
+		ScenarioContext.setContext(Keys.BROWSER, browser);
+		ScenarioContext.setContext(Keys.CLIENT, client);
+		ScenarioContext.setContext(Keys.ENVIRONMENT, environment);
+	}
 
 	@BeforeClass(alwaysRun = true)
 	@Parameters({ "Browser", "Client", "Environment" })
@@ -61,5 +83,11 @@ public class TestRunner {
 	@AfterClass(alwaysRun = true)
 	public void tearDownClass() throws Exception {
 		testNGCucumberRunner.finish();
+	}
+
+	@AfterSuite
+	public void afterSuite() {
+		BrowserFactory.stopDriverService();
+		BrowserFactory.quitDriver();
 	}
 }
