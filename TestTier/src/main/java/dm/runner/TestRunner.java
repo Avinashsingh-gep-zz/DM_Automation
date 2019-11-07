@@ -20,7 +20,7 @@ import dm.datatier.utils.DataTierUtils;
 
 
 @CucumberOptions(features = "src/test/java/WebTests/features/DemoWeb.feature"
-, plugin = { "com.vimalselvam.cucumber.listener.ExtentCucumberFormatter:" }
+, plugin = { "com.vimalselvam.cucumber.listener.ExtentCucumberFormatter:", "html:target/newReport" }
 , tags = {"@web"}
 , glue = { "dm.hooks", "dm.webTests.steps"}, dryRun = false)
 /*tags = {"~@Ignore"},*/

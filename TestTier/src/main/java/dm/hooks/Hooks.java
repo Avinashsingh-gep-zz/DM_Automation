@@ -1,26 +1,15 @@
 package dm.hooks;
 
-import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
-
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
-import com.google.common.io.Files;
 import com.paulhammant.ngwebdriver.NgWebDriver;
 import com.vimalselvam.cucumber.listener.ExtentProperties;
-import com.vimalselvam.cucumber.listener.Reporter;
-
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -28,6 +17,7 @@ import dm.runner.TestRunner;
 import dm.testtier.utils.ConfigurationProperties;
 import dm.testtier.utils.JsonReader;
 import dm.testtier.utils.Keys;
+import dm.testtier.utils.PageElement;
 import dm.testtier.utils.PropertyReader;
 import dm.testtier.utils.ScenarioContext;
 
@@ -73,25 +63,7 @@ public class Hooks {
 
 	@After("@web")
 	public void afterScenario(Scenario scenario) {
-		DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
-		Date date = new Date();
-
-		if (scenario.isFailed()) {
-			String screenshotName = scenario.getName().replaceAll(" ", "_").concat(dateFormat.format(date).toString());
-			try {
-
-				File sourcePath = ((TakesScreenshot) ScenarioContext.getContext(Keys.WebDriver))
-						.getScreenshotAs(OutputType.FILE);
-				File destinationPath = new File(System.getProperty("user.dir") + "/target/cucumber-reports/screenshots/"
-						+ screenshotName + ".png");
-				Files.copy(sourcePath, destinationPath);
-				Reporter.addScreenCaptureFromPath(destinationPath.toString());
-			} catch (IOException e) {
-			}
-		}
-		driver.close();
-		Reporter.loadXMLConfig(PropertyReader.getReportConfigPath());
-
+		PageElement.takeEmbeedScreenshot(scenario);
 	}
 
 	@Before("@api")
