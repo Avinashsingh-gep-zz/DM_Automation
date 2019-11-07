@@ -1,4 +1,4 @@
-package dm.testtier.utils;
+package apihelper;
 
 public class ConfigurationProperties {
 	public static final String BROWSER = "BROWSER";
@@ -16,5 +16,4 @@ public class ConfigurationProperties {
 	public static final String OcpApimSubscriptionKey = "Ocp-Apim-Subscription-Key";
 	public static final String Referer = "Referer";
 	public static final String UserAgent = "User-Agent";
-	public static final String APIshouldcost = "APIshouldcost";
 }

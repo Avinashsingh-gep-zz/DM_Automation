@@ -1,0 +1,16 @@
+{
+  "IssueJWTTokenResult" : {
+    "LoginError" : "The ConnectionString property has not been initialized.",
+    "LoginErrorCode" : 0,
+    "appliesTo" : null,
+    "authcode" : "00000000-0000-0000-0000-000000000000",
+    "authtype" : 0,
+    "context" : null,
+    "created" : 0,
+    "expires" : 0,
+    "mobilessourl" : null,
+    "securityJWTToken" : null,
+    "securityToken" : null,
+    "tokenType" : null
+  }
+}

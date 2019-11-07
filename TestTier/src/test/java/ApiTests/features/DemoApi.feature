@@ -1,17 +1,12 @@
 @api
 Feature: API
 
-Background: 
-
-
-  Scenario Outline: Save as Draft
-    Given Should Cost is loaded1
-    And Login
-    When Click on Scost Icon1
-    And Click on Blank Icon1
-    And Fill Basic information1
-    Then Click on Done1
+  @test1
+  Scenario Outline: Verify user can Save Should Cost as Draft
+    Given Generate Basic Toekn
+    When Post API with <FileName>
+    Then Staus should be Ok
 
     Examples: 
-      | username | password |
-      | user     | pass     |
+      | FileName |
+			| APIDATA.json | 

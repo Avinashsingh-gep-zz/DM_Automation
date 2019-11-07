@@ -26,7 +26,7 @@ import dm.testtier.utils.ScenarioContext;
 
 @CucumberOptions(features = "src/test/java"
 , plugin = { "com.vimalselvam.cucumber.listener.ExtentCucumberFormatter:" }
-, tags = {"@web"}
+, tags = {"@test1"}
 , glue = { "dm.hooks", "dm.webTests.steps", "dm.apiTests.steps"}, dryRun = false)
 /*tags = {"~@Ignore"},*/
 public class TestRunner {
@@ -35,6 +35,7 @@ public class TestRunner {
 	public static String browser;
 	public static String environment;
 	static WebDriver driver;
+	public static String BasicToken;
 
 	@BeforeSuite
 	@Parameters({ "Browser", "Client", "Environment" })
