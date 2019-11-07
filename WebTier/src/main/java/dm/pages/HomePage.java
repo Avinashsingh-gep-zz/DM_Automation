@@ -1,8 +1,9 @@
 package dm.pages;
 
 import org.openqa.selenium.WebDriver;
-
+import org.openqa.selenium.WebElement;
 import dm.locators.HomePageLocators;
+import dm.utils.SmartTestException;
 
 
 public class HomePage extends HomePageLocators {
@@ -24,9 +25,8 @@ public class HomePage extends HomePageLocators {
 
 	public void createSCFromBlank() throws InterruptedException {
 		waitAndClick(createNewDoc);
+		waitAndClick(MODULE_LIST_LEFT_ARROW);
 		waitAndClick(shouldCostModule);
 		waitAndClick(usingBlankForm);
-
 	}
-
 }

@@ -27,5 +27,23 @@ public class HomePageLocators extends Utilities{
 	
 	@FindBy(xpath = "//a[text()='Using Blank Form']")
 	protected WebElement usingBlankForm;
-
-}
+	
+	@FindBy(xpath = "//a[@data-tooltip='%s' or @data-tooltip='%s']")
+	protected WebElement MODULE_ICON;
+	
+	@FindBy(xpath = "//i[contains(@class,'rightArrow')]")
+	protected WebElement MODULE_LIST_RIGHT_ARROW;
+	
+	@FindBy(xpath = "//i[contains(@class,'leftArrow')]")
+	protected WebElement MODULE_LIST_LEFT_ARROW;
+	
+	@FindBy(xpath = "//i[contains(@class,'btmArrow')]")
+	protected WebElement MODULE_LIST_DOWN_ARROW;
+	
+	@FindBy(xpath = "//i[contains(@class,'topArrow')]")
+	protected WebElement MODULE_LIST_TOP_ARROW;
+	
+	@FindBy(xpath = "(//div[contains(normalize-space(@class),'scrollBarClass')])[last()]")
+	protected WebElement MODULE_LIST;
+	
+	}
