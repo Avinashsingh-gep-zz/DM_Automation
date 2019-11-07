@@ -22,6 +22,7 @@ public class Hooks {
 
 	static WebDriver driver;
 	static NgWebDriver ngDriver;
+	Report report = (Report)ScenarioContext.getContext(Keys.REPORT);
 	
 	public Hooks() {
 
@@ -42,7 +43,7 @@ public class Hooks {
 
 	@After("@web")
 	public void afterScenario(Scenario scenario) {
-		Report.takeEmbeedScreenshot(scenario);
+		report.takeEmbeedScreenshot(scenario);
 	}
 
 	@Before("@api")

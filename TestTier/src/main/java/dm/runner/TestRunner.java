@@ -1,9 +1,6 @@
 package dm.runner;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 
 import org.openqa.selenium.WebDriver;
@@ -15,8 +12,6 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.vimalselvam.cucumber.listener.ExtentProperties;
-
 import cucumber.api.CucumberOptions;
 import cucumber.api.testng.CucumberFeatureWrapper;
 import cucumber.api.testng.TestNGCucumberRunner;
@@ -26,6 +21,7 @@ import dm.testtier.utils.ConfigurationProperties;
 import dm.testtier.utils.JsonReader;
 import dm.testtier.utils.Keys;
 import dm.testtier.utils.PropertyReader;
+import dm.testtier.utils.Report;
 import dm.testtier.utils.ScenarioContext;
 
 @CucumberOptions(features = "src/test/java"
@@ -52,6 +48,7 @@ public class TestRunner {
 		ScenarioContext.setContext(Keys.BROWSER, browser);
 		ScenarioContext.setContext(Keys.CLIENT, client);
 		ScenarioContext.setContext(Keys.ENVIRONMENT, environment);
+		ScenarioContext.setContext(Keys.REPORT, new Report());
 	}
 
 	@BeforeClass(alwaysRun = true)
@@ -62,11 +59,6 @@ public class TestRunner {
 		TestRunner.browser = Browser;
 		TestRunner.environment = Environment;
 		System.out.println("test runner started");
-		DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
-		Date date = new Date();
-		String reportName = "DM_ShouldCost_Report_" +dateFormat.format(date).toString();
-		ExtentProperties extentProperties = ExtentProperties.INSTANCE;
-		extentProperties.setReportPath(System.getProperty("user.dir") + "/target/cucumber-reports/Reports/" +reportName+ ".html");
 		DataTierUtils.getDbConnection(TestRunner.client, TestRunner.environment);
 	}
 
@@ -87,7 +79,7 @@ public class TestRunner {
 
 	@AfterSuite
 	public void afterSuite() {
-		BrowserFactory.stopDriverService();
 		BrowserFactory.quitDriver();
+		BrowserFactory.stopDriverService();
 	}
 }
