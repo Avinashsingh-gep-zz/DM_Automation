@@ -53,16 +53,18 @@ public class Hooks {
 		driver.get(ScenarioContext.getContext(Keys.URL).toString());
 		ngDriver = new NgWebDriver((JavascriptExecutor) driver);
 		ngDriver.waitForAngularRequestsToFinish();
+		ScenarioContext.setContext(Keys.SCENARIO, scenario);
 		System.out.println("web setup");
 	}
 
 	@After("@web")
 	public void afterScenario(Scenario scenario) {
 		report.takeEmbeedScreenshot(scenario);
+		Report.updateStatusToTestRail(); 
 	}
 
 	@Before("@api")
-	public void mobileSetUp() throws IOException {
+	public void apiSetUp(Scenario scenario) throws IOException {
 		System.out.println(" api setup");
 		HashMap<String, String> TokenData = new HashMap<String, String>();
 		String jsonFilePath = ProjectPath + File.separator+ "jsonFile" + File.separator + "TokenGenerated.json";
@@ -73,6 +75,7 @@ public class Hooks {
 		apihelper.APIResponse responseData = restCalls.createRequest(apihelper.RestCalls.APIMethodType.POST,URL , requestSpec);
 		TokenData = restCalls.getResponsedata(responseData,"IssueJWTTokenResult.securityJWTToken");
 		TestRunner.BasicToken  = "Bearer" + " " + TokenData.get("uniqueid");
+		ScenarioContext.setContext(Keys.SCENARIO, scenario);
 		System.out.println("The Token Generation for API ----> " +TestRunner.BasicToken);
 	}
 
