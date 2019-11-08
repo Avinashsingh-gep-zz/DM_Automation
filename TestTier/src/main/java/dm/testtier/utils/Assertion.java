@@ -18,20 +18,20 @@ public class Assertion {
 		try {
 			if (oActual.equals(OExpected)) {
 				sMsg = "Pass : Actual Value :- " + oActual + " Matches with the expected value - " + OExpected;
-		//		oTest.log(Status.PASS, TestStep + "<br/>" + sMsg);
+				oTest.log(Status.PASS, TestStep + "<br/>" + sMsg);
 				flag = true;
 				Assert.assertEquals(oActual, OExpected);
 			} else {
 				sMsg = "Fail : Actual Value :- " + oActual + " does not match with expected value - " + OExpected;
-			//	oTest.log(Status.FAIL, TestStep + "<br/>" + sMsg);
+				oTest.log(Status.FAIL, TestStep + "<br/>" + sMsg);
 				flag = false;
 				Assert.assertEquals(oActual, OExpected);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		//	oTest.log(Status.FAIL, TestStep + "<br/>" + " The Error happen while comparing" + e);
+			oTest.log(Status.FAIL, TestStep + "<br/>" + " The Error happen while comparing" + e);
 		} finally {
-			//oExtent.flush();
+			oExtent.flush();
 		}
 		return flag;
 	}

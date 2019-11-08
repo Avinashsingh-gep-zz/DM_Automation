@@ -64,10 +64,11 @@ public class Hooks {
 	@Before("@api")
 	public void mobileSetUp() throws IOException {
 		System.out.println(" api setup");
-		HashMap TokenData = new HashMap<String, String>();
+		HashMap<String, String> TokenData = new HashMap<String, String>();
 		String jsonFilePath = ProjectPath + File.separator+ "jsonFile" + File.separator + "TokenGenerated.json";
 		String payload = apihelper.SampleApiReadJsonFile.JSONtoString(jsonFilePath);
 		String URL = configInfo.get(Keys.APIBasicTokenURL.toString());
+		@SuppressWarnings("serial")
 		RequestSpecification requestSpec = restCalls.getGenericRequestSpec(apihelper.RestCalls.APIMethodType.POST, payload, new HashMap<String, String>() {{}}, TestRunner.BasicToken);
 		apihelper.APIResponse responseData = restCalls.createRequest(apihelper.RestCalls.APIMethodType.POST,URL , requestSpec);
 		TokenData = restCalls.getResponsedata(responseData,"IssueJWTTokenResult.securityJWTToken");

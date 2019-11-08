@@ -15,7 +15,6 @@ import org.testng.annotations.Test;
 import cucumber.api.CucumberOptions;
 import cucumber.api.testng.CucumberFeatureWrapper;
 import cucumber.api.testng.TestNGCucumberRunner;
-import dm.datatier.utils.DataTierUtils;
 import dm.testtier.utils.BrowserFactory;
 import dm.testtier.utils.ConfigurationProperties;
 import dm.testtier.utils.JsonReader;
@@ -26,7 +25,7 @@ import dm.testtier.utils.ScenarioContext;
 
 @CucumberOptions(features = "src/test/java"
 , plugin = { "com.vimalselvam.cucumber.listener.ExtentCucumberFormatter:" }
-, tags = {"@test1"}
+, tags = {"@web", "@test1"}
 , glue = { "dm.hooks", "dm.webTests.steps", "dm.apiTests.steps"}, dryRun = false)
 /*tags = {"~@Ignore"},*/
 public class TestRunner {
@@ -60,7 +59,7 @@ public class TestRunner {
 		TestRunner.browser = Browser;
 		TestRunner.environment = Environment;
 		System.out.println("test runner started");
-		
+
 	}
 
 	@Test(groups = "cucumber", description = "Runs Cucumber Feature", dataProvider = "features")

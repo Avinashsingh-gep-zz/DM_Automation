@@ -1,4 +1,4 @@
-package dm.objectFactoryApi;
+package dm.apiTests.objectFactory;
 
 import dm.pages.Login;
 

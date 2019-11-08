@@ -6,24 +6,16 @@
 package apihelper;
 
 import java.io.File;
-import java.util.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
-
-
-
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-
-
-
-import com.fasterxml.jackson.databind.JsonMappingException;
-import org.apache.http.Header;
 
 /**
  *
@@ -162,7 +154,8 @@ public class LogHelperFunctions
 				//Reporter.addStepLog("Request Payload is ===> <a href= " + payloadPath + ">Click here to see the Request payload.</a>");
 			} catch(Exception e) {}
 			System.out.println(responsePayload);
-			String resFilePath = writeJSONFile(responsePayload, "Post_Response",  s3Flag );
+//			String resFilePath = 
+					writeJSONFile(responsePayload, "Post_Response",  s3Flag );
 		//	TestRunner.extentTest.log(Status.INFO, "Response payload is ===> <a href= " + resFilePath + ">Click here to see the Response.</a>");	
 		}
 		catch(Exception e)
@@ -196,7 +189,7 @@ public class LogHelperFunctions
 		}
 	}*/
 	
-	public static String  writeJSONFormat( String json )
+	public String  writeJSONFormat( String json )
 	{
 		String prettyJson = null;
 	
