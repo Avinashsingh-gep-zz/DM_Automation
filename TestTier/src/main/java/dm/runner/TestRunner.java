@@ -60,7 +60,7 @@ public class TestRunner {
 		TestRunner.browser = Browser;
 		TestRunner.environment = Environment;
 		System.out.println("test runner started");
-		DataTierUtils.getDbConnection(TestRunner.client, TestRunner.environment);
+		
 	}
 
 	@Test(groups = "cucumber", description = "Runs Cucumber Feature", dataProvider = "features")

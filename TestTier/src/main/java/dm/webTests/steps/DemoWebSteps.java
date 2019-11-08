@@ -1,5 +1,6 @@
 package dm.webTests.steps;
 
+import java.io.IOException;
 import java.util.Random;
 
 import org.testng.Assert;
@@ -9,13 +10,15 @@ import com.vimalselvam.cucumber.listener.Reporter;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import dm.datatier.utils.DataTierUtils;
 import dm.dbDTO.ShouldCostDTO;
+import dm.runner.TestRunner;
 import dm.testtier.utils.Keys;
 import dm.testtier.utils.ScenarioContext;
 import dm.utils.Utilities;
 import dm.webTests.objectFactory.ObjectFactory;
 
-public class demo extends ObjectFactory {
+public class DemoWebSteps extends ObjectFactory {
 
 	@Given("^Login using valid credentials")
 	public void login_using_valid_credentials() throws Throwable {
@@ -62,5 +65,11 @@ public class demo extends ObjectFactory {
 	public void click_on_Save_as_draft() throws Throwable {	   
 		scPage.clickSaveAsDraft();
 	}
+
+	@Given("^Establish Database Connection$")
+	public void establishDatabaseConnection() throws IOException {
+		DataTierUtils.getDbConnection(TestRunner.client, TestRunner.environment);
+	}
+
 
 }

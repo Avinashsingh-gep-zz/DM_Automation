@@ -62,7 +62,7 @@ public class Hooks {
 	}
 
 	@Before("@api")
-	public void mobileSetUp() {
+	public void mobileSetUp() throws IOException {
 		System.out.println(" api setup");
 		HashMap TokenData = new HashMap<String, String>();
 		String jsonFilePath = ProjectPath + File.separator+ "jsonFile" + File.separator + "TokenGenerated.json";
