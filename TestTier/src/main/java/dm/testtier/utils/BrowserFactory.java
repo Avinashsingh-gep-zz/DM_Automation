@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
@@ -15,6 +14,7 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerDriverService;
 import org.openqa.selenium.ie.InternetExplorerOptions;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.service.DriverService;
@@ -90,14 +90,12 @@ public class BrowserFactory {
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("start-maximized");
 			options.addArguments("disable-infobars");
-
-			capability = DesiredCapabilities.chrome();
-			capability.setJavascriptEnabled(true);
-			capability.setCapability("version", "");
-			capability.setPlatform(Platform.LINUX);
+			options.setCapability(CapabilityType.VERSION, "");
+			options.setCapability("platform", "linux");
 
 			try {
-				driver = new RemoteWebDriver(new URL("http://10.0.75.1:4444/wd/hub"), capability);
+				String hubUrl = PropertyReader.readConfig(ConfigurationProperties.HUB_URL);
+				driver = new RemoteWebDriver(new URL(hubUrl), options);
 				System.out.println(":::: " + browser + " Driver initiated ::::");
 			} catch (MalformedURLException e) {
 				System.out.println(":::: MalformedURLException error in Remote Driver ::::");
