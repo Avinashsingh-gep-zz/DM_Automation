@@ -28,8 +28,8 @@ public class DemoApiSteps {
 	
 	}
 
-	@Given("^Generate Basic Toekn$")
-	public void generate_Basic_Toekn() throws Throwable {
+	@Given("^Generate Basic Token$")
+	public void generate_Basic_Token() throws Throwable {
 	  System.out.println("The Basic Token is "+TestRunner.BasicToken);
 	}
 
@@ -52,12 +52,12 @@ public class DemoApiSteps {
 		
 	}
 
-	@Then("^Staus should be Ok$")
+	@Then("^Status should be Ok$")
 	public void staus_should_be_Ok() throws Throwable {
 		 HashMap<String, String> hmap = new HashMap<String, String>();
 		 hmap = restCalls.getResponsedata(responseData);	
 		 String id = hmap.get("StatusCode");
-		Assertion.isEqual(id, "200", "The Post is sucessful");
-		System.out.println("The Post is sucessfully");
+		Assertion.isEqual(id, "200", "The Post is succesful");
+		System.out.println("The Post is succesfully");
 	}
 }

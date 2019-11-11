@@ -32,7 +32,7 @@ public class Hooks {
 	Report report = (Report)ScenarioContext.getContext(Keys.REPORT);
 	static apihelper.RestCalls restCalls;
 	HashMap<String, String> configInfo = new HashMap<String, String>();
-	public static String ProjectPath = System.getProperty("User.dir");
+	public static String ProjectPath = System.getProperty("user.dir");
 	
 	
 	public Hooks() throws IOException {

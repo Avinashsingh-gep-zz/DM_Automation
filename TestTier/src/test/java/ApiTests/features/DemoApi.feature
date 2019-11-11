@@ -3,9 +3,9 @@ Feature: API
 
 @test1 
 Scenario Outline: Verify user can Save Should Cost as Draft 
-	Given Generate Basic Toekn 
+	Given Generate Basic Token 
 	When Post API with <FileName> 
-	Then Staus should be Ok 
+	Then Status should be Ok 
 	
 	Examples: 
 		| FileName |
