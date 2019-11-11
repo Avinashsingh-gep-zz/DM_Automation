@@ -60,7 +60,9 @@ public class Hooks {
 	@After("@web")
 	public void afterScenario(Scenario scenario) {
 		report.takeEmbeedScreenshot(scenario);
-		Report.updateStatusToTestRail(); 
+		if(TestRunner.UpdateTestRailStatus) {
+			Report.updateStatusToTestRail();
+		} 
 	}
 
 	@Before("@api")

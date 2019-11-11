@@ -35,6 +35,7 @@ public class TestRunner {
 	public static String environment;
 	static WebDriver driver;
 	public static String BasicToken;
+	public static boolean UpdateTestRailStatus;
 
 	@BeforeSuite
 	@Parameters({ "Browser", "Client", "Environment" })
@@ -52,12 +53,13 @@ public class TestRunner {
 	}
 
 	@BeforeClass(alwaysRun = true)
-	@Parameters({ "Browser", "Client", "Environment" })
-	public void setUpClass(String Browser, String Client, String Environment) throws Exception {
+	@Parameters({ "Browser", "Client", "Environment", "UpdateTestRailStatus" })
+	public void setUpClass(String Browser, String Client, String Environment, Boolean UpdateTestRailStatus) throws Exception {
 		testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
 		TestRunner.client = Client;
 		TestRunner.browser = Browser;
 		TestRunner.environment = Environment;
+		TestRunner.UpdateTestRailStatus = UpdateTestRailStatus;
 		System.out.println("test runner started");
 
 	}

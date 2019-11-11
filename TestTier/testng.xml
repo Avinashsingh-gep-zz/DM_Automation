@@ -5,6 +5,7 @@
 	<parameter name="Browser" value="Chrome" />
 	<parameter name="Client" value="Petronos" />
 	<parameter name="Environment" value="UAT" />
+	<parameter name="UpdateTestRailStatus" value="false" /> 
 	<test name="Login and Update Profile Test" annotations="JDK"
 		preserve-order="true">
 
