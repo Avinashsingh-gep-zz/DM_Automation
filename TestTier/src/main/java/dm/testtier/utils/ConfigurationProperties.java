@@ -18,4 +18,9 @@ public class ConfigurationProperties {
 	public static final String Referer = "Referer";
 	public static final String UserAgent = "User-Agent";
 	public static final String APIshouldcost = "APIshouldcost";
+	public static final String testRailURL = "testRailURL";
+	public static final String testRailUsername = "testRailUsername";
+	public static final String testRailPassword = "testRailPassword";
+	public static final String testRailComment = "testRailComment";
+
 }

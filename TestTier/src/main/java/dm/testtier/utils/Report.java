@@ -72,13 +72,20 @@ public class Report {
 		return dateFormat.format(date).toString();
 	}
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static void updateStatusToTestRail() {
 
         int status = 0;
         String caseID = null;
-        String runID = null;
-		Scenario scenario = (Scenario) ScenarioContext.getContext(Keys.SCENARIO);
+        String runID = null;		
+		String testRailURL = PropertyReader.readConfig(ConfigurationProperties.testRailURL);
+		String testRailUsername = PropertyReader.readConfig(ConfigurationProperties.testRailUsername);
+		String testRailPassword = PropertyReader.readConfig(ConfigurationProperties.testRailPassword);
+		String testRailComment = PropertyReader.readConfig(ConfigurationProperties.testRailComment);
+		
+		Scenario scenario = (Scenario) ScenarioContext.getContext(Keys.SCENARIO);	
 		Collection<String> tags = scenario.getSourceTagNames();
+		
 		System.out.println(tags);
 		for (String s : tags) {
 	        System.out.println("value= " + s);
@@ -112,12 +119,13 @@ public class Report {
 			break;
 		}
 		
-		APIClient client = new APIClient("https://smartbygep.testrail.net/");
-        client.setUser("avinash.singh@gep.com ");
-        client.setPassword("Testrail@123");
+		APIClient client = new APIClient(testRailURL);
+        client.setUser(testRailUsername);
+        client.setPassword(testRailPassword);
         Map data = new HashMap();
         data.put("status_id", status);
-        data.put("comment", "Automation POC Test - Test Executed - Status updated automatically from Selenium test automation.");
+        data.put("comment", testRailComment); 
+        
         try {
 			client.sendPost("add_result_for_case/"+runID+"/"+caseID+"",data );
 		} catch (MalformedURLException e) {
