@@ -4,11 +4,10 @@
 	thread-count="1" configfailurepolicy="continue">
 	<parameter name="Browser" value="Chrome" />
 	<parameter name="Client" value="Petronos" />
-	<parameter name="Environment" value="UAT" />
+	<parameter name="Environment" value="QC" />
 	<parameter name="UpdateTestRailStatus" value="false" /> 
 	<test name="Login and Update Profile Test" annotations="JDK"
 		preserve-order="true">
-
 		<packages>
 			<package name="dm.runner" />
 		</packages>

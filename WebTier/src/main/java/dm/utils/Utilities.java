@@ -71,7 +71,7 @@ public class Utilities {
 		WebElement clickseleniumlink = null;
 		try {
 
-			WebDriverWait wait = new WebDriverWait(driver, 60);
+			WebDriverWait wait = new WebDriverWait(driver, 20);
 
 			wait.until(ExpectedConditions.elementToBeClickable(locator));
 

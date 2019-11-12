@@ -1,7 +1,7 @@
 @api 
-Feature: API 
+Feature: API Testing
 
-@test1 
+@C177839 
 Scenario Outline: Verify user can Save Should Cost as Draft 
 	Given Generate Basic Token 
 	When Post API with <FileName> 

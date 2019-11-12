@@ -30,7 +30,7 @@ public class Report {
 	 * @param scenario
 	 */
 
-	private static String reportPrefix = "DM_ShouldCost_Report_";
+	private static String reportPrefix = "NEXXE_ShouldCost_Report_";
 	private static String systemPath = System.getProperty("user.dir");
 	private static String reportGeneratePath = systemPath + "/target/cucumber-reports/Reports/";
 	private static String reportScreenshotPath = systemPath + "/target/cucumber-reports/screenshots/";
