@@ -11,10 +11,10 @@
     <protocol>https</protocol>
     
     <!-- title of the document -->
-    <documentTitle>Direct Material Test Reports</documentTitle>
+    <documentTitle>NEXXE Test Reports</documentTitle>
     
     <!-- report name - displayed at top-nav -->
-    <reportName>Direct Material Test Reports</reportName>
+    <reportName>NEXXE Test Reports</reportName>
     
     <!-- global date format override -->  <!-- defaults to yyyy-MM-dd -->
     <dateFormat>yyyy-MM-dd</dateFormat>

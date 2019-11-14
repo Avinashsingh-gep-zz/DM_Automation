@@ -4,13 +4,15 @@
 			"URL": "https://smartqc.gep.com",
 			"UserName": "salesdemo.admin@gep.com",
 			"PassWord": "MZa8!TRjE(S",
-			"DbConn": "Which one is correct team name in NBA?"
+			"DbConn": "Which one is correct team name in NBA?",
+			"APIBasicTokenURL" :"https://smartqc-sts.gep.com/REST/jwt"	
 		},
 		"UAT": {
 			"URL": "https://smartuat.gep.com",
 			"UserName": "shouldcost1",
 			"PassWord": "Password@123",
-			"DbConn": "Which one is correct team name in NBA?"
+			"DbConn": "Which one is correct team name in NBA?",
+			"APIBasicTokenURL" :"https://smartuat-sts.gep.com/REST/jwt"			
 		}
 	}
 }
