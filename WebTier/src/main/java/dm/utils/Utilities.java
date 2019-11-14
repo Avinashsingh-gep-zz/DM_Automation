@@ -27,7 +27,7 @@ public class Utilities {
 	public static WebElement fluentWait(final WebElement locator) {
 		WebElement clickseleniumlink = null;
 		try {
-			Wait<WebDriver> wait = new FluentWait<WebDriver>(Utilities.driver).withTimeout(Duration.ofMinutes(1))
+			Wait<WebDriver> wait = new FluentWait<WebDriver>(Utilities.driver).withTimeout(Duration.ofSeconds(20))
 					.pollingEvery(Duration.ofSeconds(1)).ignoring(NoSuchElementException.class)
 					.ignoring(ElementClickInterceptedException.class).ignoring(ElementNotInteractableException.class)
 					.ignoring(ElementNotVisibleException.class);

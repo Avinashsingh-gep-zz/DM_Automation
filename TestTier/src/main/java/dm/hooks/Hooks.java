@@ -63,6 +63,7 @@ public class Hooks {
 		if(TestRunner.UpdateTestRailStatus) {
 			Report.updateStatusToTestRail();
 		} 
+		BrowserFactory.quitDriver();
 	}
 
 	@Before("@api")

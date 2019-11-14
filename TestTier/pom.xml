@@ -104,6 +104,11 @@
 			<artifactId>MobileTier</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>com.github.mkolisnyk</groupId>
+			<artifactId>cucumber-runner</artifactId>
+			<version>1.0.8</version>
+		</dependency>
 	</dependencies>
 
 	<build>

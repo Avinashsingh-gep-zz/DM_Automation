@@ -6,7 +6,7 @@ Feature: Web Testing
  	Given Establish Database Connection
 
   @C177817
-  Scenario Outline: Verify user can login to Should Cost
+  Scenario Outline: Verify user can login to Should Cost Verify user can Save Should Cost as Draft
     Given Login using valid credentials
     When Create Should Cost From Blank
 
@@ -15,7 +15,7 @@ Feature: Web Testing
       | user     | pass     |
       
   @C177819
-  Scenario Outline: Verify user can Save Should Cost as Draft
+  Scenario Outline: Verify user can Save Should Cost as Draft Verify user can Save Should Cost as Draft Verify user can Save Should Cost as Draft
     Given Login using valid credentials
     When Create Should Cost From Blank
     Given Valid test data available to fill Basic information

@@ -12,6 +12,8 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import com.github.mkolisnyk.cucumber.reporting.CucumberResultsOverview;
+
 import cucumber.api.CucumberOptions;
 import cucumber.api.testng.CucumberFeatureWrapper;
 import cucumber.api.testng.TestNGCucumberRunner;
@@ -81,8 +83,12 @@ public class TestRunner {
 	}
 
 	@AfterSuite
-	public void afterSuite() {
-		BrowserFactory.quitDriver();
+	public void afterSuite() throws Exception {
 		BrowserFactory.stopDriverService();
+		CucumberResultsOverview results = new CucumberResultsOverview();
+		results.setOutputDirectory("target/cucumber-reports/advanced-reports");
+		results.setOutputName("cucumber-results");
+		results.setSourceFile("./target/cucumber-reports/cucumber-report.json");
+		results.execute();
 	}
 }
