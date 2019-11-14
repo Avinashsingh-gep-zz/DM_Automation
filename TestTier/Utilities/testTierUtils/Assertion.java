@@ -1,4 +1,4 @@
-package utils;
+package testTierUtils;
 
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;

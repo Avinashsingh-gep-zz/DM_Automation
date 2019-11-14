@@ -1,10 +1,10 @@
 package Locators;
 
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
 import com.paulhammant.ngwebdriver.ByAngularBinding;
 
 import utils.Utilities;
@@ -12,13 +12,14 @@ import utils.Utilities;
 public class LoginLocators extends Utilities {
 
 	public LoginLocators(WebDriver driver) {
+
 		super(driver);
 		PageFactory.initElements(driver, this);
 
 	}
-	
+
 	@ByAngularBinding.FindBy(rootSelector = "butter", binding = "cheese")
-    public WebElement findBy_binding;
+	public WebElement findBy_binding;
 
 	@FindBy(id = "UserName")
 	protected

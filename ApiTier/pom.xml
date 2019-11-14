@@ -4,10 +4,11 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>dm</groupId>
-		<artifactId>direct-material</artifactId>
+		<groupId>nexxe</groupId>
+		<artifactId>NEXXE-Automation</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
+	<groupId>nexxe.ApiTier</groupId>
 	<artifactId>ApiTier</artifactId>
 	<name>ApiTier</name>
 	<properties>
@@ -16,9 +17,29 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>3.0.0</version>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>Utilities</source>
+								<source>DTO</source>
+								<source>URL</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
+				<version>3.5.1</version>
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
@@ -28,10 +49,20 @@
 	</build>
 	<dependencies>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>3.3.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-all</artifactId>
+			<version>1.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.5</version>
+		</dependency>
+
 	</dependencies>
 </project>

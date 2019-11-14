@@ -1,4 +1,4 @@
-package utils;
+package testTierUtils;
 
 public class ConfigurationProperties {
 	public static final String BROWSER = "BROWSER";
@@ -11,4 +11,5 @@ public class ConfigurationProperties {
 	public static final String PASSWORD = "PASSWORD";
 	public static final String ReportConfigPath = "reportConfigPath";
 	public static final String JSON_PATH = "JSON_PATH";
+	public static final String BASE_URL_CONFIG = "BASE_URL_CONFIG";
 }

@@ -11,7 +11,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.cucumber.listener.ExtentProperties;
+import com.vimalselvam.cucumber.listener.ExtentProperties;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.testng.CucumberFeatureWrapper;
@@ -19,15 +19,15 @@ import cucumber.api.testng.TestNGCucumberRunner;
 import utils.DataTierUtils;
 
 @CucumberOptions(features = "classpath:features", plugin = { "json:target/cucumber-report-feature-composite.json",
-		"com.cucumber.listener.ExtentCucumberFormatter:" },tags = {"@web","@webtest2"}, glue = { "steps", "hooks" }, dryRun = false)
-/*tags = {"~@Ignore"},*/
+		"com.vimalselvam.cucumber.listener.ExtentCucumberFormatter:" }, tags = {
+				"@api" }, glue = { "steps", "hooks" }, dryRun = false)
+/* tags = {"~@Ignore"},tags = {"@web","@webtest2"} */
 public class TestRunner {
 	private TestNGCucumberRunner testNGCucumberRunner;
 	public static String client;
 	public static String browser;
 	public static String environment;
 	static WebDriver driver;
-
 
 	@BeforeClass(alwaysRun = true)
 	@Parameters({ "Browser", "Client", "Environment" })
@@ -39,14 +39,15 @@ public class TestRunner {
 		System.out.println("test runner started");
 		DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
 		Date date = new Date();
-		String reportName = "DM_ShouldCost_Report_" +dateFormat.format(date).toString();
+		String reportName = "DM_ShouldCost_Report_" + dateFormat.format(date).toString();
 		ExtentProperties extentProperties = ExtentProperties.INSTANCE;
-		extentProperties.setReportPath(System.getProperty("user.dir") + "/target/cucumber-reports/Reports/" +reportName+ ".html");
+		extentProperties.setReportPath(
+				System.getProperty("user.dir") + "/target/cucumber-reports/Reports/" + reportName + ".html");
 		DataTierUtils.getDbConnection(TestRunner.client, TestRunner.environment);
 	}
 
 	@Test(groups = "cucumber", description = "Runs Cucumber Feature", dataProvider = "features")
-	public void feature(CucumberFeatureWrapper cucumberFeature) {
+	public void feature(CucumberFeatureWrapper cucumberFeature) throws Throwable {
 		testNGCucumberRunner.runCucumber(cucumberFeature.getCucumberFeature());
 	}
 

@@ -3,18 +3,23 @@ package Pages;
 import org.openqa.selenium.WebDriver;
 
 import Locators.LoginLocators;
+import utils.Utilities;
 
 public class Login extends LoginLocators {
 
-	private static Login instance;
-	
+	private static volatile Login instance;
+
 	public static WebDriver driver;
 
-	public static synchronized Login getInstance(Object driver) {
-		Login.driver = (WebDriver)driver;
+	private static String sessionId;
+
+	public static Login getInstance(Object driver) {
+		if (sessionId != Utilities.getSessionID(driver).toString()) {
+			instance = null;
+		}
 		if (instance == null) {
-			
-			instance = new Login((WebDriver)driver);
+			instance = new Login((WebDriver) driver);
+			Login.sessionId = Utilities.getSessionID(driver).toString();
 		}
 		return instance;
 	}
@@ -27,7 +32,6 @@ public class Login extends LoginLocators {
 		waitAndType(userName, username);
 		waitAndType(passWord, password);
 		waitAndClick(login);
-		
 	}
 
 }

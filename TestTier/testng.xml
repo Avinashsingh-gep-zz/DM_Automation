@@ -6,7 +6,7 @@
 		preserve-order="true">
 		<parameter name="Browser" value="Chrome" />
 		<parameter name="Client" value="Petronos" />
-		<parameter name="Environment" value="UAT" />
+		<parameter name="Environment" value="QC" />
 		<packages>
 			<package name = "runner"/>
 		</packages>

@@ -2,11 +2,15 @@ package hooks;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 
 import org.json.simple.parser.ParseException;
@@ -16,21 +20,27 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import com.cucumber.listener.Reporter;
 import com.google.common.io.Files;
 import com.paulhammant.ngwebdriver.NgWebDriver;
+import com.vimalselvam.cucumber.listener.Reporter;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+import requestDTO.AuthenticationRequestDTO;
 import runner.TestRunner;
-import utils.ConfigurationProperties;
-import utils.JsonReader;
-import utils.Keys;
-import utils.PropertyReader;
-import utils.ScenarioContext;
+import testTierUtils.ConfigurationProperties;
+import testTierUtils.JsonReader;
+import testTierUtils.Keys;
+import testTierUtils.PropertyReader;
+import testTierUtils.ScenarioContext;
+import utils.API_Verbs;
+import utils.ApiUtils;
 
 public class Hooks {
+
+	private HashMap<String, String> configInfo;
+	private HashMap<String, String> baseurl;
 
 	public Hooks() {
 
@@ -42,12 +52,16 @@ public class Hooks {
 	@Before("@web")
 	public void webSetUp(Scenario scenario) throws IOException, ParseException, SQLException {
 
-		
 		if (TestRunner.browser.equals("Chrome")) {
 
-			HashMap<String, String> configInfo = JsonReader.readJsonFile(
+			configInfo = JsonReader.readJsonFile(
 					System.getProperty("user.dir") + PropertyReader.readConfig(ConfigurationProperties.JSON_PATH),
 					TestRunner.environment, TestRunner.client);
+
+			baseurl = JsonReader.readJsonFile(
+					System.getProperty("user.dir") + PropertyReader.readConfig(ConfigurationProperties.BASE_URL_CONFIG),
+					TestRunner.environment, TestRunner.client);
+
 			ScenarioContext.setContext(Keys.UserName, configInfo.get(Keys.UserName.toString()));
 			ScenarioContext.setContext(Keys.PassWord, configInfo.get(Keys.PassWord.toString()));
 
@@ -62,6 +76,10 @@ public class Hooks {
 			ngDriver = new NgWebDriver((JavascriptExecutor) driver);
 			ngDriver.waitForAngularRequestsToFinish();
 			ScenarioContext.setContext(Keys.WebDriver, driver);
+			ApiUtils.getAccessToken(configInfo.get(Keys.UserName.toString()),
+					configInfo.get(Keys.BuyerPartnerCode.toString()), configInfo.get(Keys.PartnerCode.toString()),
+					configInfo.get(Keys.API_URL.toString()));
+
 		} else if (TestRunner.browser.equals("IE")) {
 
 		}
@@ -70,10 +88,10 @@ public class Hooks {
 	}
 
 	@After("@web")
-	public void afterScenario(Scenario scenario) {
+	public void webCleanUp(Scenario scenario) {
 		DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
 		Date date = new Date();
-		
+
 		if (scenario.isFailed()) {
 			String screenshotName = scenario.getName().replaceAll(" ", "_").concat(dateFormat.format(date).toString());
 			try {
@@ -88,19 +106,36 @@ public class Hooks {
 			}
 		}
 		driver.close();
-		Reporter.loadXMLConfig(PropertyReader.getReportConfigPath());
 
+		Reporter.loadXMLConfig(PropertyReader.getReportConfigPath());
 	}
 
 	@Before("@api")
-	public void mobileSetUp() {
+	public void apiSetUp() throws IOException {
+		
+		
 
-		System.out.println(" api setup");
-		// driver = new FirefoxDriver();
+
+		configInfo = JsonReader.readJsonFile(
+				System.getProperty("user.dir") + PropertyReader.readConfig(ConfigurationProperties.JSON_PATH),
+				TestRunner.environment, TestRunner.client);
+
+		baseurl = JsonReader.readJsonFile(
+				System.getProperty("user.dir") + PropertyReader.readConfig(ConfigurationProperties.BASE_URL_CONFIG),
+				TestRunner.environment, TestRunner.client);
+		
+		ApiUtils.getAccessToken(configInfo.get(Keys.UserName.toString()),
+				configInfo.get(Keys.BuyerPartnerCode.toString()), configInfo.get(Keys.PartnerCode.toString()),
+				configInfo.get(Keys.API_URL.toString()));
+
+		ScenarioContext.setContext(Keys.Base_URLs, baseurl);
+		ScenarioContext.setContext(Keys.UserName, configInfo.get(Keys.UserName.toString()));
+		ScenarioContext.setContext(Keys.PassWord, configInfo.get(Keys.PassWord.toString()));
+
 	}
 
-	@After
-	public void mobileCleanUp() {
+	@After("@api")
+	public void apiCleanUp() {
 		// driver.close();
 	}
 }

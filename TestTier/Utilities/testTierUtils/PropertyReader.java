@@ -1,4 +1,4 @@
-package utils;
+package testTierUtils;
 
 import java.io.FileInputStream;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package utils;
+package testTierUtils;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -26,6 +26,27 @@ public class JsonReader {
 				Map.Entry pair = itr1.next();
 				config_map.put(pair.getKey().toString(), pair.getValue().toString());
 				
+			}
+		} catch (Exception ex) {
+			System.out.println("Exception while reading Json file : " + ex.getMessage());
+		}
+		return config_map;
+	}
+	
+	public static HashMap<String, String> readJson(Object json, String module) throws IOException {
+		HashMap<String, String> config_map = new HashMap<String, String>();
+		System.out.println(json);
+		Object obj;
+		try {
+			obj = new JSONParser().parse((String)json);
+			JSONObject jo = (JSONObject) obj;
+
+			Map client = ((Map) jo.get(module));
+			
+			Iterator<Map.Entry> itr1 = client.entrySet().iterator();
+			while (itr1.hasNext()) {
+				Map.Entry pair = itr1.next();
+				config_map.put(pair.getKey().toString(), pair.getValue().toString());				
 			}
 		} catch (Exception ex) {
 			System.out.println("Exception while reading Json file : " + ex.getMessage());
