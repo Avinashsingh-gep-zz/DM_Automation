@@ -7,6 +7,7 @@
 		<parameter name="Browser" value="Chrome" />
 		<parameter name="Client" value="Petronos" />
 		<parameter name="Environment" value="QC" />
+		<parameter name="DocumentName" value="InventoryManagement" />
 		<packages>
 			<package name = "runner"/>
 		</packages>

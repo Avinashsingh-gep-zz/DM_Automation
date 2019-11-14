@@ -27,19 +27,21 @@ public class TestRunner {
 	public static String client;
 	public static String browser;
 	public static String environment;
+	public static String documentName;
 	static WebDriver driver;
 
 	@BeforeClass(alwaysRun = true)
-	@Parameters({ "Browser", "Client", "Environment" })
-	public void setUpClass(String Browser, String Client, String Environment) throws Exception {
+	@Parameters({ "Browser", "Client", "Environment" , "DocumentName" })
+	public void setUpClass(String Browser, String Client, String Environment, String DocumentName) throws Exception {
 		testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
 		TestRunner.client = Client;
 		TestRunner.browser = Browser;
 		TestRunner.environment = Environment;
+		TestRunner.documentName = DocumentName;
 		System.out.println("test runner started");
 		DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
 		Date date = new Date();
-		String reportName = "NEXXE_" + Environment + "_" + dateFormat.format(date).toString();
+		String reportName = "NEXXE_"+ DocumentName +"_" + Environment + "_" + dateFormat.format(date).toString();
 		ExtentProperties extentProperties = ExtentProperties.INSTANCE;
 		extentProperties.setReportPath(
 				System.getProperty("user.dir") + "/target/cucumber-reports/Reports/" + reportName + ".html");
