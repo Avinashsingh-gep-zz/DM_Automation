@@ -39,7 +39,7 @@ public class TestRunner {
 		System.out.println("test runner started");
 		DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
 		Date date = new Date();
-		String reportName = "DM_ShouldCost_Report_" + dateFormat.format(date).toString();
+		String reportName = "NEXXE_" + Environment + "_" + dateFormat.format(date).toString();
 		ExtentProperties extentProperties = ExtentProperties.INSTANCE;
 		extentProperties.setReportPath(
 				System.getProperty("user.dir") + "/target/cucumber-reports/Reports/" + reportName + ".html");
