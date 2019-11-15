@@ -2,8 +2,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="BDD Test Suite" verbose="1" parallel="tests"
 	thread-count="1" configfailurepolicy="continue">
-	<parameter name="Browser" value="Chrome" />
-	<parameter name="Client" value="Petronos" />
+	<parameter name="Browser" value="${Browser}" />
+	<parameter name="Client" value="${Client}" />
 	<parameter name="Environment" value="${Environment}" />
 	<parameter name="UpdateTestRailStatus" value="false" /> 
 	<test name="Login and Update Profile Test" annotations="JDK"
