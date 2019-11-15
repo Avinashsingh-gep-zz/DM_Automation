@@ -49,5 +49,6 @@
 		<module>DataTier</module>
 		<module>MobileTier</module>
 		<module>TestTier</module>
+		<module>TempTier</module>
 	</modules>
 </project>
