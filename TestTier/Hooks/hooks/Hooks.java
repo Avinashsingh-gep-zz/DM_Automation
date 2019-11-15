@@ -2,15 +2,11 @@ package hooks;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 
 import org.json.simple.parser.ParseException;
@@ -27,14 +23,12 @@ import com.vimalselvam.cucumber.listener.Reporter;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
-import requestDTO.AuthenticationRequestDTO;
 import runner.TestRunner;
 import testTierUtils.ConfigurationProperties;
 import testTierUtils.JsonReader;
 import testTierUtils.Keys;
 import testTierUtils.PropertyReader;
 import testTierUtils.ScenarioContext;
-import utils.API_Verbs;
 import utils.ApiUtils;
 
 public class Hooks {
