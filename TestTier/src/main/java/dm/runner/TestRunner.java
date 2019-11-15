@@ -27,8 +27,8 @@ import dm.testtier.utils.ScenarioContext;
 
 @CucumberOptions(features = "src/test/java"
 , plugin = { "com.vimalselvam.cucumber.listener.ExtentCucumberFormatter:","json:target/cucumber-reports/cucumber-report.json" }
-//, tags = {"@web", "@api"}
-//, tags = {"@api"}
+//, tags = {"@web","@api"}
+, tags = {"@web"}
 , glue = { "dm.hooks", "dm.webTests.steps", "dm.apiTests.steps"}, dryRun = false)
 /*tags = {"~@Ignore"},*/
 public class TestRunner {
