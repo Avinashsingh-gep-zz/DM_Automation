@@ -52,7 +52,9 @@ public class TestRunner {
 		ScenarioContext.setContext(Keys.BROWSER, browser);
 		ScenarioContext.setContext(Keys.CLIENT, client);
 		ScenarioContext.setContext(Keys.ENVIRONMENT, environment);
+		System.out.println("BROWSER is" + browser);
 		System.out.println("Environment is" + environment);
+		System.out.println("CLIENT is" + client);
 		ScenarioContext.setContext(Keys.REPORT, new Report());
 	}
 
