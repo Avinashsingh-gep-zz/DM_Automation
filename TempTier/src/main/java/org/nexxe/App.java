@@ -1,4 +1,4 @@
-package org.TempTier;
+package org.nexxe;
 
 /**
  * Hello world!

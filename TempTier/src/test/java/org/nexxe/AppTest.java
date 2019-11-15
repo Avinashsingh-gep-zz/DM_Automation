@@ -1,4 +1,4 @@
-package org.TempTier;
+package org.nexxe;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
