@@ -5,6 +5,9 @@
 	<parameter name="Browser" value="${Browser}" />
 	<parameter name="Client" value="${Client}" />
 	<parameter name="Environment" value="${Environment}" />
+		<!-- <parameter name="Browser" value="REMOTE" />
+		<parameter name="Client" value="Petronos" />
+		<parameter name="Environment" value="QC" /> -->
 	<parameter name="UpdateTestRailStatus" value="false" /> 
 	<test name="Login and Update Profile Test" annotations="JDK"
 		preserve-order="true">
