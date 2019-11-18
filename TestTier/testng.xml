@@ -5,11 +5,12 @@
 	<parameter name="Browser" value="Chrome" />
 	<parameter name="Client" value="Petronos" />
 	<parameter name="Environment" value="QC" />
-	<parameter name="UpdateTestRailStatus" value="false" /> 
+	<parameter name="UpdateTestRailStatus" value="false" />
+	<parameter name="DocumentName" value="InventoryManagement" />
 	<test name="Login and Update Profile Test" annotations="JDK"
 		preserve-order="true">
 		<packages>
-			<package name="dm.runner" />
+			<package name="nexxe.test.runner" />
 		</packages>
 	</test>
 </suite>

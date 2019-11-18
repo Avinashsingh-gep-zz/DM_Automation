@@ -4,11 +4,11 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>dm</groupId>
-		<artifactId>DM-Automation-ShouldCost</artifactId>
+		<groupId>nexxe</groupId>
+		<artifactId>NEXXE-Automation</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>dm.MobileTier</groupId>
+	<groupId>nexxe.MobileTier</groupId>
 	<artifactId>MobileTier</artifactId>
 	<name>MobileTier</name>
 	<properties>
